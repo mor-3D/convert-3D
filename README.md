@@ -64,9 +64,6 @@ Three.js
 PLYLoader (להצגת מודלים תלת־ממדיים)
 
 📁 מבנה הפרויקט – צד שרת (Backend)
-main.py 
-
-main
 
 מנוע הרקונסטרוקציה התלת־ממדית:
 
@@ -87,9 +84,6 @@ main
 שמירה לקובץ .ply
 
 SFM.py 
-
-SFM
-
 מימוש Algorithm של Structure from Motion:
 
 זיהוי תכונות והתאמתן בין תמונות
@@ -101,8 +95,6 @@ SFM
 טריאנגולציה ל־3D
 
 point_cloude.py 
-
-point_cloude
 
 ניהול point cloud:
 
@@ -118,13 +110,9 @@ Poisson Reconstruction
 
 cut_object.py 
 
-cut_object
-
 מחיקת רקע מתמונות לדיוק גבוה יותר.
 
 server.py 
-
-server
 
 API צד שרת:
 
@@ -139,13 +127,9 @@ API צד שרת:
 📁 מבנה הפרויקט – צד לקוח (Frontend)
 buttons.js 
 
-buttons
-
 לולאת העלאת התמונות + שליחתן לשרת וביצוע ההורדה.
 
 model3D.js 
-
-model3D
 
 מציג את המודל התלת־ממדי באמצעות:
 
@@ -160,8 +144,6 @@ login.js / signIn.js
 מערכת התחברות ורישום.
 
 picToServer.js 
-
-picToServer
 
 מנהל העלאת תמונה בודדת (גרסה מוקדמת).
 
