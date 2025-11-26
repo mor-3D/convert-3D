@@ -1,45 +1,50 @@
-# convert-3D
-📦 פרויקט המרה לתלת־ממד (3D Reconstruction System)
+📦 3D Reconstruction System (SfM + Web App)
 
-מערכת מלאה להמרת סדרת תמונות למודל תלת־ממד בפורמט PLY, הכוללת:
+A full-stack project that converts 2D images into a 3D model using Python, OpenCV, Structure-from-Motion (SfM), Open3D, Poisson mesh reconstruction, and a React-based user interface.
+The system allows a user to upload multiple images, process them on the server, and automatically download a .ply 3D model.
 
-צד שרת (Backend) בפייתון
+🚀 Project Overview
 
-צד לקוח (Frontend) ב־React
+This project provides an end-to-end solution for generating 3D models from images:
 
-אלגוריתמיקה של Structure from Motion (SfM)
+Backend (Python + Flask)
 
-יצירת Point Cloud ו־Mesh באמצעות OpenCV + Open3D
+Feature detection & matching (SIFT)
 
-ממשק משתמש להעלאת תמונות וצפייה במודל תלת־ממד
+Camera pose estimation (Essential Matrix, RecoverPose)
 
-🧠 תיאור כללי
+Triangulation of 3D points
 
-המערכת מאפשרת למשתמש להעלות מספר תמונות של אובייקט מכל מיני זוויות →
-השרת מריץ תהליך רקונסטרוקציה תלת־ממדית הכולל:
+Point cloud creation
 
-גילוי נקודות מעניינות (SIFT)
+Poisson mesh reconstruction
 
-התאמת תכונות בין תמונות
+Mesh cleaning & coloring
 
-חישוב מטריצת Essential והערכת תנוחה (R, t)
+User login/register system (SQLite database)
 
-טריאנגולציה ליצירת נקודות תלת־ממד
+API for uploading images and downloading the generated model
 
-יצירת point cloud
+Frontend (React)
 
-בניית mesh בשיטת Poisson Reconstruction
+Upload multiple images
 
-צביעת המודל לפי המידע מהתמונות
+Preview selected images
 
-שליחה ללקוח להורדה / הצגה
+Send images to the server
 
-🛠 טכנולוגיות
-✔ צד שרת (Backend)
+Automatic model download
+
+3D viewer using Three.js + PLYLoader
+
+Login & Sign-In pages
+
+Styled UI in CSS
+
+🧠 Technologies Used
+Backend
 
 Python
-
-Flask
 
 OpenCV
 
@@ -47,137 +52,166 @@ Open3D
 
 NumPy
 
-PIL
+Flask
 
-SQLite (רישום והתחברות משתמשים)
+SQLite
 
-✔ צד לקוח (Frontend)
+rembg (optional background removal)
+
+Frontend
 
 React
 
 JavaScript
 
+Three.js
+
 CSS
 
-Three.js
+🗂 Project Structure
+Backend (Python)
+File	Description
+main.py	Core engine: SfM pipeline, mesh reconstruction, coloring
+SFM.py	Feature detection, matching, pose estimation, triangulation 
 
-PLYLoader (להצגת מודלים תלת־ממדיים)
+SFM
 
-📁 מבנה הפרויקט – צד שרת (Backend)
 
-מנוע הרקונסטרוקציה התלת־ממדית:
+point_cloude.py	Mesh generation, Poisson reconstruction, normals, colors 
 
-טעינת תמונות
+point_cloude
 
-זיהוי נקודות (SIFT)
 
-התאמת נקודות
+cut_object.py	Background removal for image preprocessing 
 
-טריאנגולציה
+cut_object
 
-יצירת point cloud
 
-יצירת mesh בשיטת Poisson Reconstruction
+server.py	Flask server, API routes, users DB, upload logic 
 
-צביעת המודל
+server
 
-שמירה לקובץ .ply
+Frontend (React)
+File	Description
+buttons.js	Main UI: image upload, preview, send-to-server, download model 
 
-SFM.py 
-מימוש Algorithm של Structure from Motion:
+buttons
 
-זיהוי תכונות והתאמתן בין תמונות
 
-חישוב מטריצות Essential
+model3D.js	Three.js viewer for 3D .ply models 
 
-התאמת תנוחות מצלמה
+model3D
 
-טריאנגולציה ל־3D
 
-point_cloude.py 
+login.js	Login form and API request to backend 
 
-ניהול point cloud:
+login
 
-חישוב נורמלים
 
-Poisson Reconstruction
+signIn.js	Register form and API request 
 
-סינון נקודות לפי צפיפות
+signIn
 
-צביעת משולשים
 
-שמירה וויזואליזציה
+history.js	UI placeholder for user action history 
 
-cut_object.py 
+history
 
-מחיקת רקע מתמונות לדיוק גבוה יותר.
 
-server.py 
+picToServer.js	Old/alternative upload component 
 
-API צד שרת:
+picToServer
 
-רישום / התחברות משתמשים
 
-העלאת תמונות לשרת
+style.css	Styling for forms 
 
-הרצת בניית המודל
+style
 
-שליחת קובץ ה־PLY ללקוח
 
-📁 מבנה הפרויקט – צד לקוח (Frontend)
-buttons.js 
+compnents.css	Global component styling 
 
-לולאת העלאת התמונות + שליחתן לשרת וביצוע ההורדה.
+compnents
 
-model3D.js 
+🎯 Features
+🔹 Image Upload
 
-מציג את המודל התלת־ממדי באמצעות:
+Users upload multiple images through a React interface.
+Images are previewed before sending to the server.
 
-Three.js
+🔹 Server Processing (SfM Pipeline)
 
-PLYLoader
+Detect & match features
 
-תאורה, מצלמה, סיבוב אוטומטי ועוד
+Estimate camera pose
 
-login.js / signIn.js
+Triangulate 3D points
 
-מערכת התחברות ורישום.
+Merge point clouds
 
-picToServer.js 
+Estimate normals
 
-מנהל העלאת תמונה בודדת (גרסה מוקדמת).
+Poisson mesh reconstruction
 
-style.css / components.css
+Clean low-density areas
 
-עיצוב למערכת.
+Apply vertex coloring
 
-🧰 תהליך העבודה (Workflow)
+Export .ply model
 
-המשתמש מעלה סדרת תמונות מהדפדפן.
+🔹 Download 3D Model
 
-התמונות נשלחות לשרת דרך /upload.
+The server returns the resulting mesh directly as a downloadable file.
 
-השרת מריץ את אלגוריתם ה־SfM:
-✔ התאמת מאפיינים
-✔ טריאנגולציה
-✔ בניית point cloud
+🔹 User System
 
-השרת בונה mesh תלת־ממדי.
+Register
 
-המודל נשמר כ־PLY.
+Login
 
-המודל נשלח ללקוח:
+SQLite database for users
 
-להורדה
+🔹 3D Viewer (Optional)
 
-להצגה באמצעות Three.js
+Load and rotate the PLY model using Three.js.
 
-▶️ הפעלה
-צד שרת:
-cd server
+▶️ How It Works (Flow)
+Frontend
+
+User selects images
+
+React component builds FormData
+
+Sends images → POST /upload
+
+Downloads model.ply automatically
+
+Optional: displays model in 3D viewer
+
+Backend
+
+Saves uploaded images
+
+Runs full 3D reconstruction pipeline
+
+Outputs cleaned mesh
+
+Sends mesh to user
+
+🛠 How to Run
+Backend
+pip install -r requirements.txt
 python server.py
 
-צד לקוח:
-cd client
+Frontend
 npm install
 npm start
+
+📁 Future Improvements
+
+Full WebGL viewer page
+
+Texture mapping
+
+Multi-view display of uploaded images
+
+User history for downloaded models
